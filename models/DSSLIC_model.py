@@ -265,7 +265,7 @@ class DSSLICModel(BaseModel):
         return fake_image, res_image, comp_image, up_image
 
     def save(self, which_epoch):
-    self.save_network(self.compG, 'C', which_epoch, self.gpu_ids)
+        self.save_network(self.compG, 'C', which_epoch, self.gpu_ids)
         self.save_network(self.netG, 'G', which_epoch, self.gpu_ids)        
         self.save_network(self.netD, 'D', which_epoch, self.gpu_ids)
 

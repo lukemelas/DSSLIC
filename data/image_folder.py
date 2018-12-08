@@ -7,6 +7,7 @@
 import torch.utils.data as data
 from PIL import Image
 import os
+import pdb
 
 IMG_EXTENSIONS = [
     '.jpg', '.JPG', '.jpeg', '.JPEG',
@@ -19,6 +20,7 @@ def is_image_file(filename):
 
 
 def make_dataset(dir, opt):
+
     images = []
     assert os.path.isdir(dir), '%s is not a valid directory' % dir
     fileList = sorted(os.walk(dir))    
@@ -26,8 +28,8 @@ def make_dataset(dir, opt):
         for fname in fnames:
             if is_image_file(fname):
                 path = os.path.join(root, fname)
-        if ((opt.phase=='test')or(opt.phase=='train')and min(Image.open(path).size) >= 512):
-                images.append(path)        
+                if ((opt.phase=='test')or(opt.phase=='train')and min(Image.open(path).size) >= 512):
+                    images.append(path)        
     return images
 
 

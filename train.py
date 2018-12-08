@@ -12,8 +12,12 @@ import os
 import numpy as np
 import torch
 from torch.autograd import Variable
-from StringIO import StringIO
 import scipy.misc
+try:
+        from StringIO import StringIO
+except ImportError:
+        from io import StringIO
+import pdb
 
 opt = TrainOptions().parse()
 

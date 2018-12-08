@@ -216,16 +216,16 @@ class CompGenerator(nn.Module):
                  norm_layer(ngf), nn.ReLU(True)]             
         
         ### downsample
-	for i in range(n_downsampling):
+        for i in range(n_downsampling):
             mult = 2**i
             model += [nn.Conv2d(ngf * mult, ngf * mult * 2, kernel_size=3, stride=2, padding=1),
                       norm_layer(ngf * mult * 2), nn.ReLU(True)]
         
-	model += [nn.ReflectionPad2d(3), nn.Conv2d(ngf*(2**n_downsampling), output_nc, kernel_size=7, padding=0), nn.Tanh()]
+        model += [nn.ReflectionPad2d(3), nn.Conv2d(ngf*(2**n_downsampling), output_nc, kernel_size=7, padding=0), nn.Tanh()]
         self.model = nn.Sequential(*model)
     
     def forward(self, input):
-	return self.model(input)           
+        return self.model(input)           
 
 class GlobalGenerator(nn.Module):
     def __init__(self, input_nc, output_nc, ngf=64, n_downsampling=3, n_blocks=9, norm_layer=nn.BatchNorm2d, 
@@ -266,7 +266,7 @@ class GlobalGenerator(nn.Module):
                        norm_layer(int(ngf * mult / 2)), activation]
         
         model += [nn.ReflectionPad2d(3), nn.Conv2d(ngf, output_nc, kernel_size=7, padding=0), nn.Tanh()]        
-	      #model += [nn.Conv2d(ngf, output_nc, kernel_size=7, padding=0), nn.Tanh()]                
+        #model += [nn.Conv2d(ngf, output_nc, kernel_size=7, padding=0), nn.Tanh()]                
         
         self.model = nn.Sequential(*model)
             
